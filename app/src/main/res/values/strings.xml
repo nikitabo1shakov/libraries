@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Libraries</string>
+    <string name="app_name_splash">LIBRARIES</string>
+    <string name="name_counter_of_days">Счетчик Дней</string>
+    <string name="name_counter_of_minutes">Счетчик Минут</string>
+    <string name="name_counter_of_likes">Счетчик Лайков</string>
+    <string name="default_value">0</string>
+    <string name="text_about_error">Такой кнопки не существует</string>
 </resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="name_app_splash">30sp</dimen>
+    <dimen name="height_progress_bar_splash">30dp</dimen>
+</resources>
