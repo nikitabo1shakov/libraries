@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -43,6 +44,11 @@ dependencies {
     // UI
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    // Moxy
+    implementation 'com.github.moxy-community:moxy:2.2.2'
+    kapt 'com.github.moxy-community:moxy-compiler:2.2.2'
+    implementation 'com.github.moxy-community:moxy-ktx:2.2.2'
+    implementation 'com.github.moxy-community:moxy-androidx:2.2.2'
     // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
