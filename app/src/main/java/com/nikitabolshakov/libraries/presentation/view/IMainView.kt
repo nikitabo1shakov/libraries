@@ -1,7 +1,13 @@
 package com.nikitabolshakov.libraries.presentation.view
 
-import com.nikitabolshakov.libraries.presentation.utils.CounterType
+import moxy.MvpView
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.StateStrategyType
 
-interface IMainView {
-    fun setButtonText(type: CounterType, text: String)
+// @AddToEndSingle - есть ещё такой алиас
+@StateStrategyType(AddToEndSingleStrategy::class)
+interface IMainView : MvpView {
+    fun setCounterOfDaysText(text: String)
+    fun setCounterOfMinutesText(text: String)
+    fun setCounterOfLikesText(text: String)
 }

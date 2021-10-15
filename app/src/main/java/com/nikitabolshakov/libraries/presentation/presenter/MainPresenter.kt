@@ -1,22 +1,27 @@
 package com.nikitabolshakov.libraries.presentation.presenter
 
 import com.nikitabolshakov.libraries.data.model.Counters
-import com.nikitabolshakov.libraries.presentation.utils.CounterType
 import com.nikitabolshakov.libraries.presentation.view.IMainView
+import moxy.MvpPresenter
 
 class MainPresenter(
-    private var view: IMainView?
-) {
+    private var view: IMainView?,
+    private val counters: Counters
+) : MvpPresenter<IMainView>() {
 
-    private val counters = Counters()
+    fun clickCounterOfDays() {
+        val nextValue = counters.next(0)
+        viewState.setCounterOfDaysText(nextValue.toString())
+    }
 
-    fun counterClick(type: CounterType) {
-        val nextValue = when (type) {
-            CounterType.COUNTER_OF_DAYS -> counters.next(0)
-            CounterType.COUNTER_OF_MINUTES -> counters.next(1)
-            CounterType.COUNTER_OF_LIKES -> counters.next(2)
-        }
-        view!!.setButtonText(type, nextValue.toString())
+    fun clickCounterOfMinutes() {
+        val nextValue = counters.next(1)
+        viewState.setCounterOfMinutesText(nextValue.toString())
+    }
+
+    fun clickCounterOfLikes() {
+        val nextValue = counters.next(2)
+        viewState.setCounterOfLikesText(nextValue.toString())
     }
 
     fun onAttach(view: IMainView) {

@@ -1,16 +1,15 @@
 package com.nikitabolshakov.libraries.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.nikitabolshakov.libraries.R
+import com.nikitabolshakov.libraries.data.model.Counters
 import com.nikitabolshakov.libraries.databinding.ActivityMainBinding
 import com.nikitabolshakov.libraries.presentation.presenter.MainPresenter
-import com.nikitabolshakov.libraries.presentation.utils.CounterType
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity(), IMainView {
+class MainActivity : MvpAppCompatActivity(), IMainView {
 
-    private val mainPresenter = MainPresenter(this)
+    private val mainPresenter by moxyPresenter { MainPresenter(this, Counters()) }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,29 +21,23 @@ class MainActivity : AppCompatActivity(), IMainView {
 
         mainPresenter.onAttach(this)
 
-        val listener = View.OnClickListener {
-            val type = when (it.id) {
-                R.id.counter_of_days -> CounterType.COUNTER_OF_DAYS
-                R.id.counter_of_minutes -> CounterType.COUNTER_OF_MINUTES
-                R.id.counter_of_likes -> CounterType.COUNTER_OF_LIKES
-                else -> throw IllegalStateException(getString(R.string.text_about_error))
-            }
-            mainPresenter.counterClick(type)
-        }
-
         with(binding) {
-            counterOfDays.setOnClickListener(listener)
-            counterOfMinutes.setOnClickListener(listener)
-            counterOfLikes.setOnClickListener(listener)
+            counterOfDays.setOnClickListener { mainPresenter.clickCounterOfDays() }
+            counterOfMinutes.setOnClickListener { mainPresenter.clickCounterOfMinutes() }
+            counterOfLikes.setOnClickListener { mainPresenter.clickCounterOfLikes() }
         }
     }
 
-    override fun setButtonText(type: CounterType, text: String) {
-        when (type) {
-            CounterType.COUNTER_OF_DAYS -> binding.counterOfDays.text = text
-            CounterType.COUNTER_OF_MINUTES -> binding.counterOfMinutes.text = text
-            CounterType.COUNTER_OF_LIKES -> binding.counterOfLikes.text = text
-        }
+    override fun setCounterOfDaysText(text: String) {
+        binding.counterOfDays.text = text
+    }
+
+    override fun setCounterOfMinutesText(text: String) {
+        binding.counterOfMinutes.text = text
+    }
+
+    override fun setCounterOfLikesText(text: String) {
+        binding.counterOfLikes.text = text
     }
 
     override fun onStop() {
