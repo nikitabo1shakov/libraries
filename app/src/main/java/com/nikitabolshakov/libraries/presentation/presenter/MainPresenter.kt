@@ -1,27 +1,47 @@
 package com.nikitabolshakov.libraries.presentation.presenter
 
-import com.nikitabolshakov.libraries.data.model.Counters
+import com.nikitabolshakov.libraries.data.model.GithubUser
+import com.nikitabolshakov.libraries.data.repository.GithubUsersRepo
 import com.nikitabolshakov.libraries.presentation.view.IMainView
+import com.nikitabolshakov.libraries.presentation.view.IUserListPresenter
+import com.nikitabolshakov.libraries.presentation.view.UserItemView
 import moxy.MvpPresenter
 
 class MainPresenter(
     private var view: IMainView?,
-    private val counters: Counters
+    private val usersRepo: GithubUsersRepo
 ) : MvpPresenter<IMainView>() {
 
-    fun clickCounterOfDays() {
-        val nextValue = counters.next(0)
-        viewState.setCounterOfDaysText(nextValue.toString())
+    class UsersListPresenter : IUserListPresenter {
+
+        val users = mutableListOf<GithubUser>()
+
+        override var itemClickListener: ((UserItemView) -> Unit)? = null
+
+        override fun getCount() = users.size
+
+        override fun bindView(view: UserItemView) {
+            val user = users[view.pos]
+            view.setLogin(user.login)
+        }
     }
 
-    fun clickCounterOfMinutes() {
-        val nextValue = counters.next(1)
-        viewState.setCounterOfMinutesText(nextValue.toString())
+    val usersListPresenter = UsersListPresenter()
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        viewState.init()
+        loadData()
+
+        usersListPresenter.itemClickListener = { itemView ->
+            // TODO: переход на экран пользователя
+        }
     }
 
-    fun clickCounterOfLikes() {
-        val nextValue = counters.next(2)
-        viewState.setCounterOfLikesText(nextValue.toString())
+    private fun loadData() {
+        val users = usersRepo.getUsers()
+        usersListPresenter.users.addAll(users)
+        viewState.updateList()
     }
 
     fun onAttach(view: IMainView) {
