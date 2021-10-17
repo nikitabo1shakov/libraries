@@ -1,9 +1,10 @@
-package com.nikitabolshakov.libraries.presentation.view
+package com.nikitabolshakov.libraries.presentation.view.fragment.users
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nikitabolshakov.libraries.databinding.ItemUserBinding
+import com.nikitabolshakov.libraries.presentation.presenter.users.IUserListPresenter
 
 class UsersRVAdapter(
     private val mainPresenter: IUserListPresenter
@@ -11,7 +12,7 @@ class UsersRVAdapter(
 
     inner class ViewHolder(
         private val binding: ItemUserBinding
-    ) : RecyclerView.ViewHolder(binding.root), UserItemView {
+    ) : RecyclerView.ViewHolder(binding.root), IUserItemView {
         override var pos = -1
         override fun setLogin(text: String) = with(binding) {
             tvLogin.text = text
