@@ -4,13 +4,7 @@ import com.nikitabolshakov.libraries.data.model.GithubUser
 
 class GithubUsersRepository {
 
-    private val repository = listOf(
-        GithubUser("login1"),
-        GithubUser("login2"),
-        GithubUser("login3"),
-        GithubUser("login4"),
-        GithubUser("login5")
-    )
+    private val repository = (0..100).map { GithubUser("login $it") }
 
     fun getUsers() = repository
 }

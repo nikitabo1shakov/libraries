@@ -1,38 +1,18 @@
 package com.nikitabolshakov.libraries.presentation.presenter.user_list
 
-import com.github.terrakok.cicerone.Router
-import com.nikitabolshakov.libraries.data.repository.GithubUsersRepository
-import com.nikitabolshakov.libraries.presentation.utils.screens.IScreens
-import com.nikitabolshakov.libraries.presentation.view.fragments.user_list.fragment.IUserListView
-import moxy.MvpPresenter
+import com.nikitabolshakov.libraries.data.model.GithubUser
+import com.nikitabolshakov.libraries.presentation.view.fragments.user_list.adapter.IUserItemView
 
-class UserListPresenter(
-    private val githubUsersRepository: GithubUsersRepository,
-    private val router: Router,
-    private val screens: IScreens
-) : MvpPresenter<IUserListView>() {
+class UserListPresenter : IUserListPresenter {
 
-    val userListPresenterImpl = UserListPresenterImpl()
+    val users = mutableListOf<GithubUser>()
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        viewState.init()
-        loadData()
+    override var itemClickListener: ((IUserItemView) -> Unit)? = null
 
-        userListPresenterImpl.itemClickListener = { itemView ->
-            val user = userListPresenterImpl.users[itemView.pos]
-            router.navigateTo(screens.openUserDetailsFragment(user))
-        }
-    }
+    override fun getCount() = users.size
 
-    private fun loadData() {
-        val users = githubUsersRepository.getUsers()
-        userListPresenterImpl.users.addAll(users)
-        viewState.updateList()
-    }
-
-    fun backPressed(): Boolean {
-        router.exit()
-        return true
+    override fun bindView(view: IUserItemView) {
+        val user = users[view.pos]
+        view.setLogin(user.login)
     }
 }

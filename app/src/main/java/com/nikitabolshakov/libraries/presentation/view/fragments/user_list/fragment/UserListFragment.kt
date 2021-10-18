@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikitabolshakov.libraries.data.app.App
 import com.nikitabolshakov.libraries.data.repository.GithubUsersRepository
 import com.nikitabolshakov.libraries.databinding.FragmentUserListBinding
-import com.nikitabolshakov.libraries.presentation.presenter.user_list.UserListPresenter
+import com.nikitabolshakov.libraries.presentation.presenter.user_list.ScreenUserListPresenter
 import com.nikitabolshakov.libraries.presentation.utils.IBackButtonListener
 import com.nikitabolshakov.libraries.presentation.utils.screens.Screens
 import com.nikitabolshakov.libraries.presentation.view.fragments.user_list.adapter.UserListAdapter
@@ -21,8 +21,8 @@ class UserListFragment : MvpAppCompatFragment(), IUserListView, IBackButtonListe
         fun newInstance() = UserListFragment()
     }
 
-    private val userListPresenter by moxyPresenter {
-        UserListPresenter(
+    private val screenUserListPresenter by moxyPresenter {
+        ScreenUserListPresenter(
             GithubUsersRepository(),
             App.instance.router,
             Screens()
@@ -42,9 +42,11 @@ class UserListFragment : MvpAppCompatFragment(), IUserListView, IBackButtonListe
     }.root
 
     override fun init() {
-        binding?.userList?.layoutManager = LinearLayoutManager(context)
-        userListAdapter = UserListAdapter(userListPresenter.userListPresenterImpl)
-        binding?.userList?.adapter = userListAdapter
+        binding?.run {
+            this.userList.layoutManager = LinearLayoutManager(context)
+            userListAdapter = UserListAdapter(screenUserListPresenter.userListPresenter)
+            this.userList.adapter = userListAdapter
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -52,7 +54,7 @@ class UserListFragment : MvpAppCompatFragment(), IUserListView, IBackButtonListe
         userListAdapter?.notifyDataSetChanged()
     }
 
-    override fun backPressed() = userListPresenter.backPressed()
+    override fun backPressed() = screenUserListPresenter.backPressed()
 
     override fun onDestroyView() {
         super.onDestroyView()

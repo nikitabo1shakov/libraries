@@ -1,10 +1,9 @@
 package com.nikitabolshakov.libraries.presentation.view.fragments.user_list.fragment
 
 import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.alias.AddToEndSingle
 
-@StateStrategyType(AddToEndSingleStrategy::class)
+@AddToEndSingle
 interface IUserListView : MvpView {
     fun init()
     fun updateList()
