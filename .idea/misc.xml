@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20555555555555555" />
-        <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/activity_main.xml" value="0.1334853090172239" />
+        <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/activity_splash.xml" value="0.1334853090172239" />
+        <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/fragment_details.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/fragment_user_details.xml" value="0.14402173913043478" />
+        <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/fragment_user_list.xml" value="0.2" />
         <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/fragment_users.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/nikit/AndroidStudioProjects/Libraries/app/src/main/res/layout/item_user.xml" value="0.16799999999999998" />
       </map>
