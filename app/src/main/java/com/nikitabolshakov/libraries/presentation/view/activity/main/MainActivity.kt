@@ -6,8 +6,8 @@ import com.nikitabolshakov.libraries.R
 import com.nikitabolshakov.libraries.data.app.App
 import com.nikitabolshakov.libraries.databinding.ActivityMainBinding
 import com.nikitabolshakov.libraries.presentation.presenter.main.MainPresenter
-import com.nikitabolshakov.libraries.presentation.utils.fragmentopener.AndroidScreens
-import com.nikitabolshakov.libraries.presentation.view.fragment.users.IBackButtonListener
+import com.nikitabolshakov.libraries.presentation.utils.screens.Screens
+import com.nikitabolshakov.libraries.presentation.utils.IBackButtonListener
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
@@ -18,7 +18,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
     private val mainPresenter by moxyPresenter {
         MainPresenter(
             App.instance.router,
-            AndroidScreens()
+            Screens()
         )
     }
 

@@ -2,7 +2,7 @@ package com.nikitabolshakov.libraries.presentation.presenter.main
 
 import com.github.terrakok.cicerone.Router
 import com.nikitabolshakov.libraries.presentation.view.activity.main.IMainView
-import com.nikitabolshakov.libraries.presentation.utils.fragmentopener.IScreens
+import com.nikitabolshakov.libraries.presentation.utils.screens.IScreens
 import moxy.MvpPresenter
 
 class MainPresenter(
@@ -12,7 +12,7 @@ class MainPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        router.replaceScreen(screens.users())
+        router.replaceScreen(screens.openUserListFragment())
     }
 
     fun backClicked() {

@@ -1,21 +1,22 @@
-package com.nikitabolshakov.libraries.presentation.view.fragment.users
+package com.nikitabolshakov.libraries.presentation.view.fragments.user_list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nikitabolshakov.libraries.databinding.ItemUserBinding
-import com.nikitabolshakov.libraries.presentation.presenter.users.IUserListPresenter
+import com.nikitabolshakov.libraries.presentation.presenter.user_list.IUserListPresenter
 
-class UsersRVAdapter(
+class UserListAdapter(
     private val mainPresenter: IUserListPresenter
-) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     inner class ViewHolder(
         private val binding: ItemUserBinding
     ) : RecyclerView.ViewHolder(binding.root), IUserItemView {
+
         override var pos = -1
         override fun setLogin(text: String) = with(binding) {
-            tvLogin.text = text
+            loginUserList.text = text
         }
     }
 

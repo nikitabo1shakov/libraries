@@ -2,7 +2,7 @@ package com.nikitabolshakov.libraries.data.repository
 
 import com.nikitabolshakov.libraries.data.model.GithubUser
 
-class GithubUsersRepo {
+class GithubUsersRepository {
 
     private val repository = listOf(
         GithubUser("login1"),
