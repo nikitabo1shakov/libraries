@@ -1,10 +1,11 @@
-package com.nikitabolshakov.libraries.presentation.view
+package com.nikitabolshakov.libraries.presentation.view.activity.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.nikitabolshakov.libraries.databinding.ActivitySplashBinding
+import com.nikitabolshakov.libraries.presentation.view.activity.main.MainActivity
 
 private const val TIME_OF_LOAD_APP: Long = 3000
 

@@ -1,44 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/name_counter_of_days"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_counter_of_days" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/counter_of_days"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_value" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/name_counter_of_minutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_counter_of_minutes" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/counter_of_minutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_value" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/name_counter_of_likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_counter_of_likes" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/counter_of_likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_value" />
-
-</LinearLayout>
+    android:layout_height="match_parent" />
