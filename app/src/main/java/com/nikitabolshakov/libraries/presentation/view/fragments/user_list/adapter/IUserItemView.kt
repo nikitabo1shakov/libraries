@@ -2,4 +2,5 @@ package com.nikitabolshakov.libraries.presentation.view.fragments.user_list.adap
 
 interface IUserItemView : IItemView {
     fun setLogin(text: String)
+    fun loadAvatar(url: String)
 }

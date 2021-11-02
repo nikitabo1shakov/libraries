@@ -14,5 +14,6 @@ class UserListPresenter : IUserListPresenter {
     override fun bindView(view: IUserItemView) {
         val user = users[view.pos]
         user.login?.let { view.setLogin(it) }
+        user.avatarUrl?.let { view.loadAvatar(it) }
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nikitabolshakov.libraries.data.ApiHolder
+import com.nikitabolshakov.libraries.data.GlideImageLoader
 import com.nikitabolshakov.libraries.data.app.App
 import com.nikitabolshakov.libraries.data.repository.RetrofitGithubUsersRepo
 import com.nikitabolshakov.libraries.databinding.FragmentUserListBinding
@@ -47,7 +48,8 @@ class UserListFragment : MvpAppCompatFragment(), IUserListView, IBackButtonListe
     override fun init() {
         binding?.run {
             this.userList.layoutManager = LinearLayoutManager(context)
-            userListAdapter = UserListAdapter(screenUserListPresenter.userListPresenter)
+            userListAdapter =
+                UserListAdapter(screenUserListPresenter.userListPresenter, GlideImageLoader())
             this.userList.adapter = userListAdapter
         }
     }
