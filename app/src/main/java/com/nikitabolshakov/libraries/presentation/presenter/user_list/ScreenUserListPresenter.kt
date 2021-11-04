@@ -20,6 +20,7 @@ class ScreenUserListPresenter(
         super.onFirstViewAttach()
         viewState.init()
         loadData()
+        usersRepo.loadUserData()
 
         userListPresenter.itemClickListener = { itemView ->
             val user = userListPresenter.users[itemView.pos]
@@ -28,7 +29,7 @@ class ScreenUserListPresenter(
     }
 
     private fun loadData() {
-        usersRepo.getUsers()
+        usersRepo.subscribeOnGithubUsersData()
             .observeOn(uiScheduler)
             .subscribe({ repos ->
                 userListPresenter.users.clear()
