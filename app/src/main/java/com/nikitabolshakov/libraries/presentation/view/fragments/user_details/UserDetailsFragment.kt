@@ -27,7 +27,11 @@ class UserDetailsFragment : MvpAppCompatFragment(), IUserDetailsView, IBackButto
         }
     }
 
-    private val detailsPresenter by moxyPresenter { UserDetailsPresenter(App.instance.router) }
+    private val detailsPresenter by moxyPresenter {
+        UserDetailsPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
+    }
 
     private var binding: FragmentUserDetailsBinding? = null
 

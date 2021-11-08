@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nikitabolshakov.libraries.data.ApiHolder
 import com.nikitabolshakov.libraries.data.GlideImageLoader
 import com.nikitabolshakov.libraries.data.app.App
-import com.nikitabolshakov.libraries.data.repository.RetrofitGithubUsersRepo
 import com.nikitabolshakov.libraries.databinding.FragmentUserListBinding
 import com.nikitabolshakov.libraries.presentation.presenter.user_list.ScreenUserListPresenter
 import com.nikitabolshakov.libraries.presentation.utils.IBackButtonListener
@@ -21,16 +19,18 @@ import moxy.ktx.moxyPresenter
 class UserListFragment : MvpAppCompatFragment(), IUserListView, IBackButtonListener {
 
     companion object {
-        fun newInstance() = UserListFragment()
+        fun newInstance() = UserListFragment().apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private val screenUserListPresenter by moxyPresenter {
         ScreenUserListPresenter(
             AndroidSchedulers.mainThread(),
-            RetrofitGithubUsersRepo(ApiHolder.api),
-            App.instance.router,
             Screens()
-        )
+        ).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private var userListAdapter: UserListAdapter? = null

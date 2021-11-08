@@ -6,13 +6,17 @@ import com.nikitabolshakov.libraries.presentation.utils.screens.IScreens
 import com.nikitabolshakov.libraries.presentation.view.fragments.user_list.fragment.IUserListView
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
+import javax.inject.Inject
 
 class ScreenUserListPresenter(
     private val uiScheduler: Scheduler,
-    private val usersRepo: IGithubUsersRepo,
-    private val router: Router,
     private val screens: IScreens
 ) : MvpPresenter<IUserListView>() {
+
+    @Inject
+    lateinit var usersRepo: IGithubUsersRepo
+    @Inject
+    lateinit var router: Router
 
     val userListPresenter = UserListPresenter()
 
