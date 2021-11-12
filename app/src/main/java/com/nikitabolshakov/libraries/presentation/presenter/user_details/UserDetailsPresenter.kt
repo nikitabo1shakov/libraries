@@ -4,10 +4,12 @@ import com.github.terrakok.cicerone.Router
 import com.nikitabolshakov.libraries.data.model.GithubUser
 import com.nikitabolshakov.libraries.presentation.view.fragments.user_details.IUserDetailsView
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UserDetailsPresenter(
-    private val router: Router
-) : MvpPresenter<IUserDetailsView>() {
+class UserDetailsPresenter : MvpPresenter<IUserDetailsView>() {
+
+    @Inject
+    lateinit var router: Router
 
     var user: GithubUser? = null
 

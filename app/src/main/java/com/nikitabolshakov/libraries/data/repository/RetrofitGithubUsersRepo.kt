@@ -1,16 +1,17 @@
 package com.nikitabolshakov.libraries.data.repository
 
 import com.nikitabolshakov.libraries.data.IDataSource
-import com.nikitabolshakov.libraries.data.app.App
 import com.nikitabolshakov.libraries.data.model.GithubUser
 import com.nikitabolshakov.libraries.data.room.User
 import com.nikitabolshakov.libraries.data.room.UserDao
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
-class RetrofitGithubUsersRepo(private val api: IDataSource) : IGithubUsersRepo {
+class RetrofitGithubUsersRepo(
+    val api: IDataSource,
+    val db: UserDao
+) : IGithubUsersRepo {
 
-    private val db: UserDao by lazy { App.instance.getDB().userDao() }
     private val bs = BehaviorSubject.create<Unit>()
 
     override fun subscribeOnGithubUsersData(): Observable<List<GithubUser>> {
